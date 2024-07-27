@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<ruleset name="ForbiddenStaticFunction">
+    <description>Checks all functions are not marked as static.</description>
+</ruleset>

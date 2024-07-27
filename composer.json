@@ -1,0 +1,21 @@
+{
+    "name": "szymon/code-sniffer",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Szymon\\CodeSniffer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "SimonIsMe"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.10.1"
+    }
+}
