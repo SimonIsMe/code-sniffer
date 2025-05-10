@@ -4,7 +4,10 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Szymon\\CodeSniffer\\": "src/"
+            "Szymon\\CodeSniffer\\": "src/",
+            "PHP_CodeSniffer\\Tests\\": "vendor/squizlabs/php_codesniffer/tests",
+            "PHP_CodeSniffer\\": "vendor/squizlabs/php_codesniffer/src",
+            "Tests\\": "Tests"
         }
     },
     "authors": [
@@ -13,9 +16,13 @@
         }
     ],
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.4"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "3.10.1"
+        "squizlabs/php_codesniffer": "3.10.1",
+        "phpunit/phpunit": "12.1.4"
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit --colors=always ./tests"
     }
 }
