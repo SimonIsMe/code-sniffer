@@ -32,7 +32,7 @@ class ProcessFileService
         $errors = $localFile->getErrors();
 
         return array_map(
-            fn (array $error): string => $error[1][0]['message'],
+            fn (array $error): string => reset($error)[0]['message'],
             $errors,
         );
     }

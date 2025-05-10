@@ -27,6 +27,4 @@ class ForbiddenTraitsSniffTest extends TestCase
             $errors,
         );
     }
-
-
 }
