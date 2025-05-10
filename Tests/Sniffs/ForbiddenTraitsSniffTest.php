@@ -8,14 +8,14 @@ use Tests\Helpers\ProcessFileService;
 use PHPUnit\Framework\TestCase;
 use Szymon\CodeSniffer\Sniffs\ForbiddenTraitsSniff;
 
-class ForbiddenTraitsUnitTest extends TestCase
+class ForbiddenTraitsSniffTest extends TestCase
 {
     public function test(): void
     {
         $service = new ProcessFileService();
 
         $errors = $service->processFile(
-            __DIR__ . '/ForbiddenTraitsUnitTest.inc',
+            __DIR__ . '/ForbiddenTraitsSniffTest.inc',
             ForbiddenTraitsSniff::class
         );
 
