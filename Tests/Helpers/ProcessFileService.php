@@ -12,7 +12,8 @@ class ProcessFileService
 {
     public function processFile(
         string $absoluteFilePath,
-        string $sniffClassName
+        string $sniffClassName,
+        array $properties = [],
     ): array
     {
         $ruleset = new Ruleset(
@@ -21,6 +22,10 @@ class ProcessFileService
         $ruleset->sniffs = [];
         $ruleset->sniffs[$sniffClassName] = new $sniffClassName();
         $ruleset->populateTokenListeners();
+
+        foreach ($properties as $property => $value) {
+            $ruleset->setSniffProperty($sniffClassName, $property, $value);
+        }
 
         $localFile = new LocalFile(
             $absoluteFilePath,
