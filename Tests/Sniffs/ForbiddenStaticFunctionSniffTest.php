@@ -3,7 +3,7 @@
 namespace Tests\Sniffs;
 
 use PHPUnit\Framework\TestCase;
-use Szymon\CodeSniffer\Sniffs\ForbiddenStaticFunctionSniff;
+use Szymon\CodeSniffer\Sniffs\ForbiddenStaticMethodsAndPropertiesSniff;
 use Tests\Helpers\ProcessFileService;
 
 class ForbiddenStaticFunctionSniffTest extends TestCase
@@ -13,8 +13,8 @@ class ForbiddenStaticFunctionSniffTest extends TestCase
         $service = new ProcessFileService();
 
         $errors = $service->processFile(
-            __DIR__ . '/ForbiddenStaticFunctionSniffTest.inc',
-            ForbiddenStaticFunctionSniff::class
+            __DIR__ . '/ForbiddenStaticMethodsAndPropertiesSniffTest.inc',
+            ForbiddenStaticMethodsAndPropertiesSniff::class
         );
 
         $this->assertEquals(

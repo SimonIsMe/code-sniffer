@@ -7,7 +7,7 @@ namespace Szymon\CodeSniffer\Sniffs;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-final class ForbiddenStaticFunctionSniff implements Sniff
+final class ForbiddenStaticMethodsAndPropertiesSniff implements Sniff
 {
     public function register()
     {
