@@ -54,14 +54,9 @@ class ForbiddenInheritanceSniff implements Sniff
 
     private function getChildClassName(File $phpcsFile, $stackPtr): string
     {
-        for ($i = $stackPtr - 1; $i >= 0; $i--) {
-            $token = $phpcsFile->getTokens()[$i];
-            if ($token['type'] === 'T_STRING') {
-                return $token['content'];
-            }
-        }
-
-        throw new \Exception('No child class name found');
+        return $phpcsFile->getTokens()[
+            $phpcsFile->findPrevious(T_STRING, $stackPtr - 1)
+        ]['content'];
     }
 
     private function getParentClassNameWithoutNamespace(File $phpcsFile, $stackPtr): string
