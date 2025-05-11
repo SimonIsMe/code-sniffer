@@ -23,6 +23,8 @@
         "phpunit/phpunit": "12.1.4"
     },
     "scripts": {
-        "test": "./vendor/bin/phpunit --colors=always ./tests"
+        "test": "test:sniffs && test:non-sniffs",
+        "test:sniffs": "./vendor/bin/phpunit  -c phpunit-sniffs.xml --colors=always ./Tests/Sniffs",
+        "test:non-sniffs": "./vendor/bin/phpunit --no-configuration --colors=always ./Tests/Services"
     }
 }

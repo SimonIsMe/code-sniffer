@@ -4,8 +4,10 @@ namespace Szymon\CodeSniffer\Sniffs;
 
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Files\File;
+use Szymon\CodeSniffer\Services\GetTypesFromDocService;
+use Szymon\CodeSniffer\Services\TypesCompareService;
 
-class RequireClassAttributeTypeSniff implements Sniff
+class CheckClassAttributeTypeSniff implements Sniff
 {
     public function register()
     {
@@ -35,7 +37,7 @@ class RequireClassAttributeTypeSniff implements Sniff
 
         if (empty($declaredTypes) && empty($documentedTypes)) {
             $phpcsFile->addError(
-                'Undefined type for "%s::%s"',
+                'Undefined type for "%s::%s".',
                 $stackPtr,
                 'aa',
                 [
@@ -45,16 +47,9 @@ class RequireClassAttributeTypeSniff implements Sniff
             );
         }
 
-        if (in_array('array', $declaredTypes)) {
-            return;
-        }
-
-        if (json_encode($declaredTypes) !== json_encode($documentedTypes)
-            && empty($documentedTypes) === false
-            && empty($documentedTypes) === false
-        ) {
+        if ($this->areTypesIdentical($declaredTypes, $documentedTypes)) {
             $phpcsFile->addError(
-                'Defined types for "%s::%s" are not identical: "%s" and "%s"',
+                'Defined types for "%s::%s" are not identical: "%s" and "%s".',
                 $stackPtr,
                 'aa',
                 [
@@ -65,6 +60,17 @@ class RequireClassAttributeTypeSniff implements Sniff
                 ]
             );
         }
+    }
+
+    private function areTypesIdentical(array $declaredTypes, array $documentedTypes): bool
+    {
+        $typesCompareService = new TypesCompareService();
+        $hasDeclaredTypes = empty($declaredTypes);
+        $hasDocumentedTypes = empty($documentedTypes);
+
+        return $hasDeclaredTypes === false
+            && $hasDocumentedTypes === false
+            && $typesCompareService->areIdentical($declaredTypes, $documentedTypes) === false;
     }
 
     /**
@@ -98,12 +104,8 @@ class RequireClassAttributeTypeSniff implements Sniff
      */
     private function getVarValueFromDoc(string $docContent): array
     {
-        preg_match('/@var (\S*)/', $docContent, $matches);
-
-        if (empty($matches)) {
-            return [];
-        }
-        return $this->convertStringToArrayOfTypes($matches[1]);
+        $service = new GetTypesFromDocService();
+        return $service->getVarValueFromDoc($docContent);
     }
 
     private function getPropertyName(string $declarationText): string
