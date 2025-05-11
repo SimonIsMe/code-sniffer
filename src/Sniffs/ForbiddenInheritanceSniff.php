@@ -61,18 +61,12 @@ class ForbiddenInheritanceSniff implements Sniff
 
     private function getParentClassNameWithoutNamespace(File $phpcsFile, $stackPtr): string
     {
-        $countAllTokens = count($phpcsFile->getTokens()) - 1;
-        for ($i = $stackPtr + 1; $i < $countAllTokens; $i++) {
-            $token = $phpcsFile->getTokens()[$i];
-            $nextToken = $phpcsFile->getTokens()[$i + 1];
-            if ($token['type'] === 'T_NS_SEPARATOR' || $nextToken['type'] === 'T_NS_SEPARATOR') {
-                continue;
-            }
-            if ($token['type'] === 'T_STRING') {
-                return $token['content'];
-            }
-        }
+        $tokens = $phpcsFile->getTokens();
+        $parentClassNameIndex = $phpcsFile->findPrevious(
+            T_STRING,
+            $phpcsFile->findNext(T_OPEN_CURLY_BRACKET, $stackPtr),
+        );
 
-        throw new \Exception('No parent class name found');
+        return $tokens[$parentClassNameIndex]['content'];
     }
 }
