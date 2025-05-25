@@ -1,9 +1,9 @@
 <?php
 
-namespace Szymon\CodeSniffer\Sniffs;
+namespace Szymon\CodeSniffer\Standards\Generic\Sniffs;
 
-use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
 
 class RequireClassAttributeTypeSniff implements Sniff
 {

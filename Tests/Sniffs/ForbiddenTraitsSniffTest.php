@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace Tests\Sniffs;
 
-use Tests\Helpers\ProcessFileService;
 use PHPUnit\Framework\TestCase;
-use Szymon\CodeSniffer\Sniffs\ForbiddenTraitsSniff;
+use Szymon\CodeSniffer\Standards\Generic\Sniffs\ForbiddenTraitsSniff;
+use Tests\Helpers\ProcessFileService;
 
 class ForbiddenTraitsSniffTest extends TestCase
 {

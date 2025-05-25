@@ -3,7 +3,7 @@
 namespace Sniffs;
 
 use PHPUnit\Framework\TestCase;
-use Szymon\CodeSniffer\Sniffs\RequireClassAttributeTypeSniff;
+use Szymon\CodeSniffer\Standards\Generic\Sniffs\RequireClassAttributeTypeSniff;
 use Tests\Helpers\ProcessFileService;
 
 class RequireClassAttributeTypeSniffTest extends TestCase

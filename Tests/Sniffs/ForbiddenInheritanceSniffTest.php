@@ -3,7 +3,7 @@
 namespace Tests\Sniffs;
 
 use PHPUnit\Framework\TestCase;
-use Szymon\CodeSniffer\Sniffs\ForbiddenInheritanceSniff;
+use Szymon\CodeSniffer\Standards\Generic\Sniffs\ForbiddenInheritanceSniff;
 use Tests\Helpers\ProcessFileService;
 
 class ForbiddenInheritanceSniffTest extends TestCase

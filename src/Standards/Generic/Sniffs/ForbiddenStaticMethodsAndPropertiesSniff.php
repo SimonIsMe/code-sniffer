@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Szymon\CodeSniffer\Sniffs;
+namespace Szymon\CodeSniffer\Standards\Generic\Sniffs;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;

@@ -3,7 +3,7 @@
 namespace Tests\Sniffs;
 
 use PHPUnit\Framework\TestCase;
-use Szymon\CodeSniffer\Sniffs\ForbiddenStaticMethodsAndPropertiesSniff;
+use Szymon\CodeSniffer\Standards\Generic\Sniffs\ForbiddenStaticMethodsAndPropertiesSniff;
 use Tests\Helpers\ProcessFileService;
 
 class ForbiddenStaticFunctionSniffTest extends TestCase
