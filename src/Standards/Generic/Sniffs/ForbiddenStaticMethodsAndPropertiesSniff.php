@@ -16,6 +16,8 @@ final class ForbiddenStaticMethodsAndPropertiesSniff implements Sniff
 
     public function process(File $phpcsFile, $stackPtr)
     {
-        $phpcsFile->addError('Static methods and properties are forbidden.', $stackPtr, 'StaticFunction');
+        if ($phpcsFile->getTokens()[$stackPtr + 1]['type'] !== 'T_DOUBLE_COLON') {
+            $phpcsFile->addError('Static methods and properties are forbidden.', $stackPtr, 'StaticFunction');
+        }
     }
 }
